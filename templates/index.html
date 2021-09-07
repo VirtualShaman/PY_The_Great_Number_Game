@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a anumber between 1 & 100</p>
+        <p>Take a guess!</p>
+        {% if 'num' in session %}
+            {% if session['num']== session['result'] %}
+                <h1 class="box" id="green">
+                    {{session['result']}} was the right number!
+                    <button class="btn" onclick="location.href='/clear'">
+                        Play Again!</button>
+                </h1>
+            {% elif session['num']> session['result'] %}
+            <h1 class="box red">Too High!</h1>
+            {% elif session['num']< session['result'] %}
+            <h1 class="box red">Too Low!</h1>
+            {% endif %}
+        {% endif %}
+
+
+        <form id="form" action="/processing" method="POST">
+            <input type="text" name="num">
+            <input class="btn" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
+
+
+
